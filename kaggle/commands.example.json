@@ -1,0 +1,11 @@
+[
+  ["make-crops", "--data", "/kaggle/input/flickr30k/flickr30k_images", "--output", "{WORK}/crops.json"],
+  ["train-proxy", "--data", "{WORK}/crops.json", "--qp", "28", "--init", "/kaggle/input/native-rd-checkpoints/rd28.pt", "--output", "{WORK}/bank/qp28.pt"],
+  ["train-proxy", "--data", "{WORK}/crops.json", "--qp", "31", "--init", "/kaggle/input/native-rd-checkpoints/rd31.pt", "--output", "{WORK}/bank/qp31.pt"],
+  ["train-proxy", "--data", "{WORK}/crops.json", "--qp", "34", "--init", "/kaggle/input/native-rd-checkpoints/rd34.pt", "--output", "{WORK}/bank/qp34.pt"],
+  ["train-proxy", "--data", "{WORK}/crops.json", "--qp", "37", "--init", "/kaggle/input/native-rd-checkpoints/rd37.pt", "--output", "{WORK}/bank/qp37.pt"],
+  ["train-proxy", "--data", "{WORK}/crops.json", "--qp", "41", "--init", "/kaggle/input/native-rd-checkpoints/rd41.pt", "--output", "{WORK}/bank/qp41.pt"],
+  ["train-npp", "--stage", "fixed", "--task", "classification", "--data", "/kaggle/input/imagenet/train", "--proxy-dir", "{WORK}/bank", "--output", "{WORK}/fixed.pt"],
+  ["train-npp", "--stage", "adaptive", "--task", "classification", "--data", "/kaggle/input/imagenet/train", "--proxy-dir", "{WORK}/bank", "--fixed", "{WORK}/fixed.pt", "--output", "{WORK}/adaptive.pt"],
+  ["evaluate", "--task", "classification", "--data", "/kaggle/input/imagenet/val", "--npp", "{WORK}/adaptive.pt", "--output", "{WORK}/evaluation"]
+]

@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "synthetic_only": true,
+  "device": "cpu",
+  "rd_updates": 3,
+  "task_model": "synthetic frozen Conv2d, not pretrained ResNet/FCOS",
+  "torch": "2.5.1",
+  "bpg_proxy_updates": 1,
+  "npp_updates": {
+    "fixed": 1,
+    "adaptive": 1
+  },
+  "resume_optimizer_and_decay": true,
+  "real_bpg_forward_frozen_proxy_gradient": true,
+  "stage_metrics": {
+    "fixed": {
+      "bpp": 3.52734375,
+      "proxy_bpp": 3.448756456375122,
+      "task": 0.03675689175724983,
+      "pre_mse": 0.2659473717212677
+    },
+    "adaptive": {
+      "bpp": 4.04296875,
+      "proxy_bpp": 2.679007053375244,
+      "task": 0.031759776175022125,
+      "pre_mse": 0.21167762577533722
+    }
+  }
+}

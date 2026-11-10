@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.local-tools/
+outputs/
+kaggle/generated/
+*.pt
+*.pth

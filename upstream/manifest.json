@@ -1,0 +1,101 @@
+{
+  "repository": "XingtongGe/PreprocessingICM",
+  "commit": "6a77c4633cd5bb6750c77ea9d213d38ffc88ee7a",
+  "files": [
+    {
+      "path": "NPP_Codec/ImageCompression/models/GDN.py",
+      "git_blob_sha": "cecf8807015907f61d326fcc28574c4ecae2e748",
+      "sha256": "b0ee4424a7fceb157bb9a8f9df8527f95480dba60af3ce39dacd9b95b4d9f6fd"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/__init__.py",
+      "git_blob_sha": "a799dd99fb5e847dbe4889bf1abacc34e0758c66",
+      "sha256": "166d3020d4d59f431eab1ad3ff272c759ea17abe3b14553ae4b1de322a3a42be"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/analysis.py",
+      "git_blob_sha": "a28b41f088ad083d17155d50ba01dfb58703debc",
+      "sha256": "d503ab9343ce7dfa637a0bcb2d12882a9ea9349df15db7b83171f67a37aca36b"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/analysis_prior.py",
+      "git_blob_sha": "3e6c97d9171842f1523f250120a10b13acfb0a5a",
+      "sha256": "b97d756b617542b6c2736f6fd0e4481652e3cb9f9b6fa00fd40aa7310651d845"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/analysis_prior_nips.py",
+      "git_blob_sha": "31b43112abe291365b3ddb9f9fa3a9ec459b3973",
+      "sha256": "9c775f3a6df53a3ae1fa8895dee5e44b9b2dd3d8291cad165df9381173760ef2"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/basics.py",
+      "git_blob_sha": "d007758d4fd51a2310b8692f29a5334f3f6b1c54",
+      "sha256": "e5c0c102a0663f0c9ab8b148f1d1a118f7cb5c6661c8f0c7348f25360ae71506"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/bitEstimator.py",
+      "git_blob_sha": "e6b8aa2a7de58cabfda2b63d4ce3d4c99fac6bb4",
+      "sha256": "eabf47e7d8e624c40824dcf1153592c19722e75e6b5aa9de7c0d7a6b42d23802"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/context_module.py",
+      "git_blob_sha": "621dbe4d731dae94a3d825ff531aba2cdc09469a",
+      "sha256": "9ca15425c6e94909663b51c30bab089572fd64558ec4fe87928dc00a2ccade33"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/ms_ssim_torch.py",
+      "git_blob_sha": "40dbdbf3f9f0ca7ad6bee84b25bc078851bea1f8",
+      "sha256": "904991a582529958d6c7234527ca1f075ff41990b283097a030073105f94aa15"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/synthesis.py",
+      "git_blob_sha": "011da7a497cbbc6e52f76f6e7d612db80e23221c",
+      "sha256": "2c1be8a0b94c3fa0228470098911ea638aab6670d6aa9d973713d56eccaacab2"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/synthesis_prior.py",
+      "git_blob_sha": "ee6f91758534c357dc3778215b515ece0e2b7177",
+      "sha256": "41e6dbc7d850092f334f8180f10d71b4a6f0aabd558810cc6879a4f698ab4916"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/models/synthesis_prior_nips.py",
+      "git_blob_sha": "034d3471ac5c5988ad058e2e7c48821e091c46a7",
+      "sha256": "d32ed937573a9e4c945f201bd38ea9a09ec2de4dda051dcf16a322419832fc71"
+    },
+    {
+      "path": "NPP_Codec_Variable/models/Preprocessor.py",
+      "git_blob_sha": "91464ba18b2a47cf8f3fef42b8853e2feca8e0d9",
+      "sha256": "2a86f707ce413d4c4146ba75f9e3651d76dc03b4eedda28a9faf42e555e59e1d"
+    },
+    {
+      "path": "NPP_Codec_Variable/models/Scaling_net.py",
+      "git_blob_sha": "7e3849a05668bea2fb4b890371732172eafa5a60",
+      "sha256": "60db619055eaecdf337f593821a3fa6440546a9329f093ae13245fc4b2c5aaa5"
+    },
+    {
+      "path": "NPP_Codec_Variable/models/UNet.py",
+      "git_blob_sha": "76d5dd7fe79f556aaf9a9f32b20157c61cc44b9d",
+      "sha256": "1bd08953d979034062898aa7116f46c6f090333b2eb1053488f8f4ba0b7ba5b6"
+    },
+    {
+      "path": "NPP_Codec/ImageCompression/model.py",
+      "git_blob_sha": "cc692395f1c6ba8b1873f46ff35b2496893f8f1c",
+      "sha256": "c34aebbddd9e865be334746c860d1c8b1770737175e506428d501eb1be785efa"
+    },
+    {
+      "path": "NPP_Codec/models/Preprocessor.py",
+      "git_blob_sha": "63b0d22b0bdc4d470b1a411153aef1c0b996a202",
+      "sha256": "2d3010fa22072834b7d3af92c49b38f1194b446e2343d1ac16ccbed6968edc1c"
+    },
+    {
+      "path": "NPP_Codec/models/UNet.py",
+      "git_blob_sha": "a436d8e1a6e7008fcd19cce7ea00005ed92ebaf3",
+      "sha256": "b4927385f371d7e9a5ea65fc8da3980b8fa16a87b5e81e75cf66dbd66239fc14"
+    },
+    {
+      "path": "LICENSE",
+      "git_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    }
+  ]
+}

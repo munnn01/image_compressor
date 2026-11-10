@@ -1,0 +1,117 @@
+[
+  {
+    "source": "NPP_Codec/ImageCompression/models/GDN.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\GDN.py",
+    "patches": [],
+    "sha256": "b0ee4424a7fceb157bb9a8f9df8527f95480dba60af3ce39dacd9b95b4d9f6fd"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/__init__.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\__init__.py",
+    "patches": [],
+    "sha256": "166d3020d4d59f431eab1ad3ff272c759ea17abe3b14553ae4b1de322a3a42be"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/analysis.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\analysis.py",
+    "patches": [],
+    "sha256": "d503ab9343ce7dfa637a0bcb2d12882a9ea9349df15db7b83171f67a37aca36b"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/analysis_prior.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\analysis_prior.py",
+    "patches": [],
+    "sha256": "b97d756b617542b6c2736f6fd0e4481652e3cb9f9b6fa00fd40aa7310651d845"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/analysis_prior_nips.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\analysis_prior_nips.py",
+    "patches": [],
+    "sha256": "9c775f3a6df53a3ae1fa8895dee5e44b9b2dd3d8291cad165df9381173760ef2"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/basics.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\basics.py",
+    "patches": [],
+    "sha256": "e5c0c102a0663f0c9ab8b148f1d1a118f7cb5c6661c8f0c7348f25360ae71506"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/bitEstimator.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\bitEstimator.py",
+    "patches": [],
+    "sha256": "eabf47e7d8e624c40824dcf1153592c19722e75e6b5aa9de7c0d7a6b42d23802"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/context_module.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\context_module.py",
+    "patches": [
+      "functional causal mask instead of .data mutation",
+      "remove mask debug print"
+    ],
+    "sha256": "adc02c63eadbbf8a8e3e1fc0c66787e844dd963dcbcb417e86ed697d05c0795f"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/ms_ssim_torch.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\ms_ssim_torch.py",
+    "patches": [],
+    "sha256": "904991a582529958d6c7234527ca1f075ff41990b283097a030073105f94aa15"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/synthesis.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\synthesis.py",
+    "patches": [],
+    "sha256": "2c1be8a0b94c3fa0228470098911ea638aab6670d6aa9d973713d56eccaacab2"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/synthesis_prior.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\synthesis_prior.py",
+    "patches": [],
+    "sha256": "41e6dbc7d850092f334f8180f10d71b4a6f0aabd558810cc6879a4f698ab4916"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/models/synthesis_prior_nips.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\models\\synthesis_prior_nips.py",
+    "patches": [],
+    "sha256": "d32ed937573a9e4c945f201bd38ea9a09ec2de4dda051dcf16a322419832fc71"
+  },
+  {
+    "source": "NPP_Codec_Variable/models/Preprocessor.py",
+    "destination": "npp_proxy\\vendor\\npp_adaptive\\Preprocessor.py",
+    "patches": [],
+    "sha256": "2a86f707ce413d4c4146ba75f9e3651d76dc03b4eedda28a9faf42e555e59e1d"
+  },
+  {
+    "source": "NPP_Codec_Variable/models/Scaling_net.py",
+    "destination": "npp_proxy\\vendor\\npp_adaptive\\Scaling_net.py",
+    "patches": [],
+    "sha256": "60db619055eaecdf337f593821a3fa6440546a9329f093ae13245fc4b2c5aaa5"
+  },
+  {
+    "source": "NPP_Codec_Variable/models/UNet.py",
+    "destination": "npp_proxy\\vendor\\npp_adaptive\\UNet.py",
+    "patches": [],
+    "sha256": "1bd08953d979034062898aa7116f46c6f090333b2eb1053488f8f4ba0b7ba5b6"
+  },
+  {
+    "source": "NPP_Codec/ImageCompression/model.py",
+    "destination": "npp_proxy\\vendor\\imagecompression\\model.py",
+    "patches": [
+      "package-relative imports",
+      "noise follows input device/dtype",
+      "remove debug print"
+    ],
+    "sha256": "40c13e4c2e63a1320d74d3af6b7829fbaa90ddf205efb1aeb28c95c9b9fc87ba"
+  },
+  {
+    "source": "NPP_Codec/models/Preprocessor.py",
+    "destination": "npp_proxy\\vendor\\npp_fixed\\Preprocessor.py",
+    "patches": [],
+    "sha256": "2d3010fa22072834b7d3af92c49b38f1194b446e2343d1ac16ccbed6968edc1c"
+  },
+  {
+    "source": "NPP_Codec/models/UNet.py",
+    "destination": "npp_proxy\\vendor\\npp_fixed\\UNet.py",
+    "patches": [],
+    "sha256": "b4927385f371d7e9a5ea65fc8da3980b8fa16a87b5e81e75cf66dbd66239fc14"
+  }
+]
