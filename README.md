@@ -95,6 +95,8 @@ kaggle kernels push -p kaggle/generated
 
 Danh sách lệnh là các mảng argv, chạy tuần tự, dừng khi một lệnh lỗi. `{WORK}`, `{BPGENC}`, `{BPGDEC}` được thay bằng đường dẫn trong notebook. Template dùng `--init` cho năm checkpoint RD đã được chọn; thay bằng `--calibration` nếu đã chuẩn bị report hợp lệ. Nên tạo một gói cho từng giai đoạn/QP, tải output checkpoint rồi resume khi cần; template toàn chuỗi không bảo đảm vừa giới hạn phiên Kaggle. Số bước mỗi phiên có thể điều chỉnh bằng `--run-updates` mà vẫn giữ lịch LR tổng.
 
+Sau RD, dùng `kaggle/prepare_proxy.py --owner YOUR_OWNER --qp 34 --rd-sources rd_sources.json --output kaggle/generated/bpg34`. File JSON ánh xạ các QP `28/31/34/37/41` sang `owner/native-rd-notebook/version`. Builder kiểm tra đủ bước/native provenance, calibration trên holdout rồi fine-tune BPG. Phiên sau thêm `--previous owner/imagecompressor-native-bpg-qp34/1` để phục hồi Adam và giữ checkpoint đã chọn. Mặc định 8.192 bước/phiên, tổng 100.000/QP; cuối mỗi phiên có audit BPG thật.
+
 ## Mức độ khớp và giới hạn
 
 - Nguồn tác giả được pin theo commit và kiểm tra 19 Git blob; `upstream/manifest.json` lưu hash từng file. `upstream/port_manifest.json` ghi hash và các sửa đổi tương thích. Chi tiết ở [PROVENANCE.md](docs/PROVENANCE.md).
