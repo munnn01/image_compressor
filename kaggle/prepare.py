@@ -93,9 +93,8 @@ def build(destination, kernel_id, commands, datasets, kernels):
             or row[0] not in COMMANDS for row in commands):
         raise ValueError('Commands must be nonempty arrays of native npp_proxy CLI arguments')
     buffer = io.BytesIO()
-    paths = [*PROJECT.glob('npp_proxy/**/*.py'), *PROJECT.glob('upstream/**/*'),
-             PROJECT / 'requirements.txt', PROJECT / 'LICENSE', PROJECT / 'README.md',
-             PROJECT / 'docs/PROVENANCE.md']
+    paths = [*PROJECT.glob('npp_proxy/**/*.py'), *PROJECT.glob('upstream/**/*'), *PROJECT.glob('docs/*.md'),
+             PROJECT / 'requirements.txt', PROJECT / 'LICENSE', PROJECT / 'README.md']
     with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as source:
         for path in sorted(set(paths)):
             if path.is_file() and '__pycache__' not in path.parts and path.suffix != '.pyc':

@@ -72,6 +72,18 @@ Khi chuyển máy, manifest có `--image-root` để đổi gốc ảnh. Resume 
 
 ## Đóng gói Kaggle
 
+RD pretraining đã được chọn ngân sách riêng **100.000 bước/QP**, giảm LR sau 80.000; đây là ngân sách thực nghiệm được người dùng chốt, không phải ngân sách RD pretraining đã xác nhận từ bài báo. Có builder riêng để chạy từng QP độc lập, kiểm tra native GPU trước khi train và nối checkpoint theo phiên:
+
+```powershell
+python kaggle/prepare_rd.py --owner YOUR_OWNER --qps 34 --run-updates 16384 --output kaggle/generated/qp34
+kaggle kernels push -p kaggle/generated/qp34
+# Sau khi phiên 1 COMPLETE, giữ nguyên tổng đích và nối đúng trọng số/Adam:
+python kaggle/prepare_rd.py --owner YOUR_OWNER --qps 34 --run-updates 16384 --previous YOUR_OWNER/imagecompressor-native-rd-qp34/1 --output kaggle/generated/qp34
+kaggle kernels push -p kaggle/generated/qp34
+```
+
+Lặp cho QP28/31/37/41 trên các tài khoản được phép sử dụng. Mỗi job chỉ train QP được chỉ định; 16.384 là số update tối đa của một phiên, không phải tổng ngân sách. `gpu_smoke.json` và `progress.json` ghi kiến trúc, gradient kiểm tra, nguồn code, số bước, LR và hoàn tất giai đoạn. Khi RD đạt đủ 100.000, cần audit/calibration rồi mới bắt đầu BPG fine-tuning. Danh sách triển khai hiện tại nằm trong [DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
 `kaggle/prepare.py` tạo notebook **public**, GPU, Internet, chứa toàn bộ mã native và SHA256. Script chỉ tạo gói, không đăng nhập tài khoản hay tự submit. Không chứa pool tài khoản/token/checkpoint. Notebook tạo môi trường Python 3.12 + Torch 2.5.1 và build BPG JCTVC; cần Kaggle cho phép Internet và GPU khả dụng.
 
 Sửa đường dẫn dataset trong `kaggle/commands.example.json`, gắn dataset Flickr30k, native RD bank và ImageNet tương ứng, rồi:
