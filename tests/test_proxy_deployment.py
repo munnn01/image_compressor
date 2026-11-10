@@ -1,6 +1,7 @@
 import ast
 import importlib.util
 import json
+import hashlib
 from pathlib import Path
 import tempfile
 import unittest
@@ -11,6 +12,18 @@ spec.loader.exec_module(builder)
 
 
 class ProxyDeploymentTests(unittest.TestCase):
+    def test_restores_exact_rd_manifest_when_dataset_root_moves(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            original = b'{"root":"/old/flickr30k","train":["a.jpg"],"holdout":["b.jpg"]}'
+            source, target = root / 'rd.json', root / 'crops.json'
+            source.write_bytes(original)
+            target.write_text('{"root":"/new/flickr30k"}')
+            builder.restore_rd_manifest(source, target, hashlib.sha256(original).hexdigest())
+            self.assertEqual(target.read_bytes(), original)
+            for row in builder.proxy_commands(34):
+                if row[0] != 'make-crops':
+                    self.assertIn('--image-root', row)
     def test_initial_calibration_precedes_native_bpg_training(self):
         commands = builder.proxy_commands(34, 8192, False)
         self.assertEqual([r[0] for r in commands], ['make-crops', 'calibrate-proxy', 'train-proxy', 'audit-proxy'])

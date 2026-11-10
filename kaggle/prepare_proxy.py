@@ -4,17 +4,27 @@ import importlib.util
 import json
 from pathlib import Path
 import re
+import hashlib
+import shutil
+import inspect
 
 spec = importlib.util.spec_from_file_location('native_base_builder', Path(__file__).with_name('prepare.py'))
 base = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base)
 
 
+def restore_rd_manifest(source, target, expected_hash):
+    data = Path(source).read_bytes()
+    if hashlib.sha256(data).hexdigest() != expected_hash:
+        raise ValueError('Pinned RD crop manifest does not match checkpoint provenance')
+    Path(target).write_bytes(data)
+
+
 def proxy_commands(qp, updates=8192, resume=False):
     if qp not in (28,31,34,37,41) or not 1 <= updates <= 100000:
         raise ValueError('Require a paper QP and a positive session budget')
     commands = [['make-crops', '--data', '{FLICKR}', '--output', '{WORK}/crops.json']]
-    common = ['--device', 'cuda:0', '--threads', '2']
+    common = ['--device', 'cuda:0', '--threads', '2', '--image-root', '{FLICKR}']
     if not resume:
         commands.append(['calibrate-proxy', '--data', '{WORK}/crops.json', '--candidate-dir', '{WORK}/rd_candidates',
                          '--qps', str(qp), '--samples', '64', '--output', '{WORK}/calibration.json', *common])
@@ -74,6 +84,9 @@ for qp_text, handle in RD_SOURCES.items():
     shutil.copy2(source, target)
     rd_hashes[qp_text] = hashlib.sha256(target.read_bytes()).hexdigest()
 
+rd_manifest = unique(next(iter(RD_SOURCES.values())), 'crops.json')
+assert hashlib.sha256(rd_manifest.read_bytes()).hexdigest() == manifest_hash
+
 bank = work / 'proxy'
 bank.mkdir(exist_ok=True)
 start = 0
@@ -130,10 +143,10 @@ def build_proxy(destination, owner, qp, rd_sources, updates=8192, previous=None)
     path = destination / 'notebook.ipynb'
     notebook = json.loads(path.read_text(encoding='utf-8'))
     exercise = ast.literal_eval(ast.parse(''.join(notebook['cells'][0]['source'])).body[0].value)
-    exercise = f'QP={qp!r}\nRD_SOURCES={rd_sources!r}\nPREVIOUS={previous!r}\n' + exercise
+    exercise = f'QP={qp!r}\nRD_SOURCES={rd_sources!r}\nPREVIOUS={previous!r}\n' + inspect.getsource(restore_rd_manifest) + '\n' + exercise
     exercise = exercise.replace('for command in COMMAND_LIST:', SETUP + '\nfor command in COMMAND_LIST:', 1)
     marker = "'--bpgenc', bpg / 'bpgenc', '--bpgdec', bpg / 'bpgdec', cwd=root)"
-    exercise = exercise.replace(marker, marker + "\n    if command[0] == 'make-crops':\n        assert hashlib.sha256((work / 'crops.json').read_bytes()).hexdigest() == manifest_hash\n    progress(False)\nprogress(True)")
+    exercise = exercise.replace(marker, marker + "\n    if command[0] == 'make-crops':\n        restore_rd_manifest(rd_manifest, work / 'crops.json', manifest_hash)\n    progress(False)\nprogress(True)")
     compile(exercise, 'native-bpg-runtime', 'exec')
     code = f'EXERCISE = {exercise!r}\n' + base.BOOTSTRAP
     compile(code, 'native-bpg-notebook', 'exec')
