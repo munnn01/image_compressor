@@ -42,6 +42,7 @@ class RDDeploymentTests(unittest.TestCase):
             metadata = json.loads((Path(folder) / 'kernel-metadata.json').read_text())
             self.assertFalse(metadata['is_private'])
             self.assertTrue(metadata['enable_gpu'])
+            self.assertEqual(metadata['machine_shape'], 'NvidiaTeslaT4')
             self.assertEqual(metadata['id'].split('/')[1], metadata['title'].lower().replace(' ', '-'))
             self.assertEqual(metadata['kernel_sources'], ['nguoingoaihanhlang/native-imagecompressor-rd-bank/1'])
             self.assertEqual(metadata['dataset_sources'], ['eeshawn/flickr30k/1'])

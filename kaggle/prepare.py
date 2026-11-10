@@ -114,6 +114,7 @@ def build(destination, kernel_id, commands, datasets, kernels):
     metadata = {'id': kernel_id, 'title': 'Native ImageCompressor NPP Reproduction',
                 'code_file': 'notebook.ipynb', 'language': 'python', 'kernel_type': 'notebook',
                 'is_private': False, 'enable_gpu': True, 'enable_internet': True,
+                'machine_shape': 'NvidiaTeslaT4',
                 'dataset_sources': datasets, 'kernel_sources': kernels, 'competition_sources': []}
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=True)

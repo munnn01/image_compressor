@@ -33,6 +33,7 @@ class ProxyDeploymentTests(unittest.TestCase):
             builder.build_proxy(Path(folder), 'owner', 34, sources)
             meta = json.loads((Path(folder) / 'kernel-metadata.json').read_text())
             self.assertEqual(set(meta['kernel_sources']), set(sources.values()))
+            self.assertEqual(meta['machine_shape'], 'NvidiaTeslaT4')
             self.assertEqual(meta['id'].split('/')[1], meta['title'].lower().replace(' ', '-'))
             code = ''.join(json.loads((Path(folder) / 'notebook.ipynb').read_text())['cells'][0]['source'])
             compile(code, 'notebook', 'exec')

@@ -27,3 +27,13 @@ The BPG phase has its own 100,000-update target per QP, with LR 1e-4 through upd
 Native proxy builder: `kaggle/prepare_proxy.py`. Its `--rd-sources` input is a JSON mapping of all five QPs to their version-pinned native RD notebook references. The deployed full-budget BPG fine-tuning is still in progress; no new task accuracy/BD-rate result is claimed. Fixed/adaptive NPP remain subsequent stages.
 
 Initial API snapshot: QP28/31/34/41 RUNNING; QP37 queued on tranthihongdieu, with a second authorized trial on shungg05 also queued. A local coordinator keeps the first trial that reaches RUNNING, cancels the other observed session after that condition holds, and starts continuation for the winner. This avoids committing to duplicate training while GPU workers are unavailable. Statuses are historical deployment snapshots; check Kaggle for current state.
+
+## GPU selection correction
+
+The user briefly requested avoiding T4, then explicitly approved T4 after the hardware check. Kaggle retired P100 on 15 September 2026 and automatically maps P100 requests to T4. The attempted P100-labelled jobs were therefore not P100 runs. Current builders and continuation commands explicitly select NvidiaTeslaT4 (T4 x2); actual hardware should be read from the runtime/UI, not inferred from notebook names.
+
+The active QP28/31/34/41 notebook slugs retain `-p100` from that unsuccessful selection attempt, and QP37 retains `-retry`. These names are historical only. Current remote jobs are retained; changing the local controllers does not cancel or restart them.
+
+During the earlier switch attempt, the four original native T4 sessions were cancelled. No complete BPG checkpoint could be retrieved (local download attempts produced empty checkpoint files), so those four replacements initialize from the completed native RD bank and recalibrate. Unpublished BPG updates from interrupted sessions are not claimed preserved. The total BPG target remains 100,000 updates/QP with decay after 80,000. Completed RD pretraining is preserved.
+
+Official notice: https://www.kaggle.com/product-announcements/735239

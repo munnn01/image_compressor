@@ -72,6 +72,8 @@ Khi chuyển máy, manifest có `--image-root` để đổi gốc ảnh. Resume 
 
 ## Đóng gói Kaggle
 
+Theo lựa chọn mới nhất của người dùng, các builder chọn **GPU T4 ×2** rõ ràng bằng `NvidiaTeslaT4`. Kaggle đã ngừng P100 và tự chuyển yêu cầu P100 sang T4; tên notebook có chữ P100 từ lần thử cũ không xác nhận phần cứng. Các job hiện tại được giữ để tiếp tục train.
+
 RD pretraining đã được chọn ngân sách riêng **100.000 bước/QP**, giảm LR sau 80.000; đây là ngân sách thực nghiệm được người dùng chốt, không phải ngân sách RD pretraining đã xác nhận từ bài báo. Có builder riêng để chạy từng QP độc lập, kiểm tra native GPU trước khi train và nối checkpoint theo phiên:
 
 ```powershell
